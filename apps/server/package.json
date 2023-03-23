@@ -5,8 +5,8 @@
   "author": "Arthur Andrade",
   "license": "MIT",
   "scripts": {
-    "dev": "tsx watch ./index.ts",
-    "build": "tsup ./index.ts",
+    "dev": "tsx watch ./src/server.ts",
+    "build": "tsup ./src/server.ts",
     "serve": "node dist/index.js"
   },
   "devDependencies": {

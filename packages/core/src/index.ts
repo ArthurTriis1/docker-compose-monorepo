@@ -1,2 +1,3 @@
-export type { Task } from "./models/Task"
-export const hello = "hihihi"
+export * from "@src/models"
+export * from "@src/services"
+export * from "@src/repositories/interfaces"
