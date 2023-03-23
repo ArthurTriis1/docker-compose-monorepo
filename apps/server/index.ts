@@ -1,4 +1,10 @@
-import { main } from "./src/main";
 import { hello } from "@monorepo/core";
+import Fastify from "fastify";
 
-main(hello);
+const server = Fastify();
+
+server.get("/ping", async () => {
+	return { pong: hello };
+});
+
+server.listen({ port: 3000 }).then(() => console.log("Server started!!"));
