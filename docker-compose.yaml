@@ -1,13 +1,48 @@
 version: '3'
 
+networks:
+  monorepo-network:
+    driver: bridge
+
 services:
   db:
     image: bitnami/postgresql
     container_name: database
     ports:
-      - 5432:5432
+      - "5432:5432"
     environment:
       - POSTGRESQL_USERNAME=docker
       - POSTGRESQL_PASSWORD=docker 
       - POSTGRESSQL_DATABASE=docker
     restart: always
+    networks:
+      monorepo-network:
+        aliases:
+          - db
+  server: 
+    image: node:18
+    container_name: server
+    ports:
+      - "3001:3001"
+    working_dir: /app
+    volumes: 
+      - ./:/app
+    networks:
+      monorepo-network:
+        aliases:
+          - server
+    command: "/bin/sh -c 'cd apps/server && npm run dev'"
+  frontend: 
+    image: node:18
+    container_name: frontend
+    ports:
+      - "5173:5173"
+    working_dir: /app
+    volumes: 
+      - ./apps/frontend:/app
+      - ./node_modules:/app/node_modules
+    networks:
+      monorepo-network:
+        aliases:
+          - frontend
+    command: "npm run dev"
