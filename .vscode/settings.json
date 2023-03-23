@@ -1,3 +1,7 @@
 {
-    "eslint.workingDirectories": [ "./apps/server", "./packages/core" ]
+    "eslint.workingDirectories": [
+        "./apps/server",
+        "./packages/core"
+    ],
+    "editor.fontFamily": "\"Fira code\", Consolas, 'Courier New', monospace"
 }
